@@ -4,9 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:paynback_manufacturer_app/constants.dart';
 import 'package:paynback_manufacturer_app/controller/repositories/add_kyc.dart';
+import 'package:paynback_manufacturer_app/controller/repositories/add_product_repo.dart';
 import 'package:paynback_manufacturer_app/controller/repositories/auth_init.dart';
 import 'package:paynback_manufacturer_app/controller/repositories/auth_status.dart';
+import 'package:paynback_manufacturer_app/controller/repositories/get_product_repo.dart';
+import 'package:paynback_manufacturer_app/controller/repositories/product_category_repo.dart';
 import 'package:paynback_manufacturer_app/controller/repositories/verify_auth.dart';
+import 'package:paynback_manufacturer_app/view/bloc/add_product/add_product_bloc.dart';
+import 'package:paynback_manufacturer_app/view/bloc/get_products/get_products_bloc.dart';
+import 'package:paynback_manufacturer_app/view/bloc/product_category/product_category_bloc.dart';
 import 'package:paynback_manufacturer_app/view/bloc/splash/splash_bloc.dart';
 import 'package:paynback_manufacturer_app/view/bloc/submit_kyc/submit_kyc_bloc.dart';
 import 'package:paynback_manufacturer_app/view/bloc/submit_phone_number/submit_phone_number_bloc.dart';
@@ -28,6 +34,9 @@ void main() async {
         BlocProvider(create: (_) => SubmitPhoneNumberBloc(authInit: AuthInit())),
         BlocProvider(create: (_) => VerifyOtpBloc(verifyAuth: VerifyAuth())),
         BlocProvider(create: (_) => SubmitKycBloc(addKyc: AddKyc()),),
+        BlocProvider<GetProductsBloc>(create: (_) => GetProductsBloc(GetProductsRepo())..add(FetchProductsEvent()),),
+        BlocProvider(create: (_) => AddProductBloc(AddProductRepo()),),
+        BlocProvider(create: (_) => ProductCategoryBloc(ProductCategoryRepo()),),
       ],
       child: const MyApp(),
     ),

@@ -52,7 +52,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: pnbThemeColor2,
+      backgroundColor: pnbwhite,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
@@ -79,7 +79,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 // Navigate to Home Screen
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (_) => const MyHomePage()),
+                  MaterialPageRoute(builder: (_) => MyHomePage(manufacturerName: state.manufacturerName,)),
                   (Route<dynamic> route) => false,
                 );
               }

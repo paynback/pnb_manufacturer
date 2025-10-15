@@ -7,8 +7,9 @@ class VerifyOtpLoading extends VerifyOtpState {}
 class VerifyOtpSuccess extends VerifyOtpState {
   final bool isKyc;
   final bool isVerified;
+  final String manufacturerName;
 
-  VerifyOtpSuccess({required this.isKyc, required this.isVerified});
+  VerifyOtpSuccess({required this.isKyc, required this.isVerified,required this.manufacturerName});
 }
 
 class VerifyOtpFailure extends VerifyOtpState {

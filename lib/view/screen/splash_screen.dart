@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: pnbThemeColor2,
+      backgroundColor: pnbwhite,
       body: SafeArea(
         child: BlocListener<SplashBloc, SplashState>(
           listener: (context, state) {
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
               if (isKyc && isVerified) {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (_) => const MyHomePage()),
+                  MaterialPageRoute(builder: (_) => MyHomePage(manufacturerName: authData['name'],)),
                 );
               } else if (isKyc && !isVerified) {
                 Navigator.pushReplacement(

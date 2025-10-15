@@ -15,12 +15,17 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
         final isKyc = response['isKyc'] as bool;
         final isVerified = response['isVerified'] as bool;
         final manufacturerId = response['manufacturer_id'] as String;
+        final manufacturerName = response['name'] as String;
+        final accessToken = response['accessToken'] as String;
+
+        final pref = await SharedPreferences.getInstance();
+        await pref.setString('accessToken', accessToken );
 
          // Save manufacturer_id to SharedPreferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('manufacturer_id', manufacturerId);
 
-        emit(VerifyOtpSuccess(isKyc: isKyc, isVerified: isVerified));
+        emit(VerifyOtpSuccess(isKyc: isKyc, isVerified: isVerified,manufacturerName: manufacturerName));
       } catch (e) {
         emit(VerifyOtpFailure(e.toString().replaceFirst('Exception: ', '')));
       }

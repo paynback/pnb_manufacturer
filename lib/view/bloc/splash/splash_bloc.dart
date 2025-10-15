@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paynback_manufacturer_app/controller/repositories/auth_status.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,11 +22,11 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         try {
           final response = await authStatus.checkAuthStatus();
 
-          print("API Response in SplashBloc: $response");
+          log("API Response in SplashBloc: $response");
 
           emit(SplashLoggedIn(response));
         } catch (e) {
-          print("API Error: $e");
+          log("API Error: $e");
           emit(SplashLoggedOut());
         }
       } else {

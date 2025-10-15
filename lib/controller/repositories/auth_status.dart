@@ -27,7 +27,7 @@ class AuthStatus {
 
       if (response.statusCode == 200) {
         final data = response.data as Map<String, dynamic>;
-        log("Auth Status Response: $data");
+        log("Splash Auth Status Response: $data");
         return data;
       } else {
         throw Exception("Unexpected server response");
